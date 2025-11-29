@@ -3,13 +3,13 @@ from django.conf.urls.static import static
 from django.urls import path
 from . import views
 from django.contrib.auth import views as auth_views
-from .views import cosmetics_view, household, sports
+from .views import cosmetics_view, household, sports, electronics
 
 urlpatterns = [
     path('', views.home, name='home'),
     path('cart/', views.cart, name='cart'),  # Specific pattern
     path('glass/', views.category_view, {'category_name': 'Glass'}, name='glass'),
-    path('electronics/', views.electronics, name='electronics'),
+    path('electronics/', electronics, name='electronics'),
     path('cosmetics/', cosmetics_view, name='cosmetics'),
     path('household/', household, name='household'),
     path('sports/', sports, name='sports'),

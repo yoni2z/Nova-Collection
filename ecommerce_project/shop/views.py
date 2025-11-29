@@ -18,11 +18,10 @@ def glass(request):
 def order_now(request):
     return render(request, 'order_now.html')
 
-
 def electronics(request):
     category = get_object_or_404(Category, name='Electronics')
     products = Product.objects.filter(category=category)
-    return render(request, 'electronics.html', {'products': products})
+    return render(request, 'electronics.html', {'products': products, 'category': category})
 
 def cosmetics_view(request):
     category = Category.objects.get(name='Cosmetics')
