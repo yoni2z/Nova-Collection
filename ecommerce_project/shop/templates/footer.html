@@ -1,3 +1,4 @@
+{% load static %}
 <!DOCTYPE html>
 <html lang="en">
   <head>
@@ -182,8 +183,6 @@
     </style>
   </head>
   <body>
-    
-
     <footer class="footer-custom">
       <section class="container">
         <h2 id="contacts" class="text-center">Connect With Us</h2>
@@ -290,7 +289,7 @@
           >
             <div>
               <img
-                src="../static/images/byteleap.png"
+                src="{% static 'images/byteleap.png' %}"
                 alt="ByteLeap Logo"
                 class="footer-logo"
               />
