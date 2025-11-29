@@ -1,0 +1,324 @@
+<!-- {% load static %} -->
+
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    {% comment %}
+    <link rel="icon" href="../static/images/nova_logo.jpg" type="image/jpeg" />
+    {% endcomment %}
+    <link
+      rel="icon"
+      href="https://novagebeya.com/static/images/nova_logo.jpg"
+      type="image/jpeg"
+    />
+
+    <title>{% block title %}E-commerce{% endblock %}</title>
+    <!-- Bootstrap CSS -->
+    <link
+      href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css"
+      rel="stylesheet"
+    />
+    <!-- Ionicons for icons -->
+    <link
+      rel="stylesheet"
+      href="https://unpkg.com/ionicons@5.5.0/dist/ionicons/ionicons.css"
+    />
+    <!-- Font Awesome for icons -->
+    <link
+      rel="stylesheet"
+      href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.4/css/all.min.css"
+    />
+    <style>
+      /* ============================================================= */
+      /* ✅ PREMIUM ANIMATED NAVBAR */
+      /* ============================================================= */
+
+      /* ✅ DEFAULT TRANSPARENT STATE (TOP OF PAGE) */
+      .navbar-custom {
+        background: transparent;
+        padding: 1rem 2rem;
+        transition: all 0.4s ease;
+        position: fixed !important;
+        top: 0 !important;
+        left: 0;
+        width: 100%;
+        z-index: 9999;
+        box-shadow: none;
+      }
+
+      /* ✅ SCROLLED STATE */
+      .navbar-scrolled {
+        background: linear-gradient(120deg, #f4af2f, #ffdd8d, #f39c12);
+        background-size: 300% 300%;
+        animation: navbarFlow 8s ease infinite;
+        box-shadow: 0 12px 35px rgba(0, 0, 0, 0.25);
+        backdrop-filter: blur(10px);
+      }
+
+      /* Default (top) */
+      .navbar-custom .nav-link,
+      .navbar-custom .navbar-brand,
+      .navbar-custom .brand-text {
+        color: #111 !important;
+        transition: color 0.4s ease;
+      }
+
+      /* After scroll */
+      .navbar-scrolled .nav-link,
+      .navbar-scrolled .navbar-brand,
+      .navbar-scrolled .brand-text {
+        color: white !important;
+      }
+
+      @keyframes navbarFlow {
+        0% {
+          background-position: 0% 50%;
+        }
+        50% {
+          background-position: 100% 50%;
+        }
+        100% {
+          background-position: 0% 50%;
+        }
+      }
+
+      /* ✅ BRAND LOGO + TEXT */
+      .navbar-custom .navbar-brand {
+        color: #0b0b0b;
+        font-size: 2.3rem;
+        font-weight: 900;
+        letter-spacing: 1px;
+        position: relative;
+        animation: brandPop 1.2s ease forwards;
+      }
+
+      @keyframes brandPop {
+        from {
+          opacity: 0;
+          transform: translateY(-15px);
+        }
+        to {
+          opacity: 1;
+          transform: translateY(0);
+        }
+      }
+
+      .navbar-custom .brand-text {
+        font-size: 1rem;
+        font-weight: 600;
+        color: #1e1e1e;
+        letter-spacing: 0.7px;
+        opacity: 0.85;
+      }
+
+      /* ✅ NAV LINKS */
+      .navbar-custom .nav-link {
+        color: #1a1a1a;
+        font-size: 1.1rem;
+        font-weight: 700;
+        margin: 0 0.3rem;
+        position: relative;
+        transition: all 0.4s ease;
+      }
+
+      /* Glow underline animation */
+      .navbar-custom .nav-link::after {
+        content: "";
+        position: absolute;
+        bottom: -5px;
+        left: 50%;
+        width: 0%;
+        height: 3px;
+        background: #000;
+        border-radius: 10px;
+        transition: all 0.4s ease;
+        transform: translateX(-50%);
+      }
+
+      .navbar-custom .nav-link:hover::after {
+        width: 80%;
+      }
+
+      .navbar-custom .nav-link:hover {
+        color: #000;
+        transform: translateY(-2px);
+      }
+
+      /* ✅ CART BUTTON */
+      .btn-cart {
+        display: inline-flex;
+        align-items: center;
+        padding: 10px 22px;
+        background: linear-gradient(135deg, #f39c12, #dc9626ff);
+        color: white !important;
+        border-radius: 50px;
+        font-size: 1rem;
+        font-weight: 800;
+        transition: all 0.35s ease;
+        box-shadow: 0 0 20px rgba(0, 0, 0, 0.35);
+        position: relative;
+        overflow: hidden;
+      }
+
+      .btn-cart i {
+        margin-right: 8px;
+        animation: cartBounce 2.2s infinite;
+      }
+
+      @keyframes cartBounce {
+        0%,
+        100% {
+          transform: translateY(0);
+        }
+        50% {
+          transform: translateY(-5px);
+        }
+      }
+
+      .btn-cart:hover {
+        background: linear-gradient(135deg, #f4af2f, #ffce5c);
+        color: #000 !important;
+        transform: scale(1.08);
+      }
+
+      /* Shine Effect */
+      .btn-cart::after {
+        content: "";
+        position: absolute;
+        top: -50%;
+        left: -120%;
+        width: 200%;
+        height: 200%;
+        background: linear-gradient(
+          120deg,
+          transparent,
+          rgba(255, 255, 255, 0.7),
+          transparent
+        );
+        transform: rotate(20deg);
+      }
+
+      .btn-cart:hover::after {
+        animation: navShine 1s ease;
+      }
+
+      @keyframes navShine {
+        to {
+          left: 120%;
+        }
+      }
+
+      /* ✅ TOGGLER */
+      .navbar-toggler {
+        border: none;
+        outline: none;
+        font-size: 1.5rem;
+      }
+
+      /* ✅ MOBILE OPTIMIZATION */
+      @media (max-width: 992px) {
+        .navbar-custom {
+          padding: 1rem;
+        }
+
+        .navbar-custom .navbar-brand {
+          font-size: 1.7rem;
+        }
+
+        .navbar-custom .nav-link {
+          font-size: 1rem;
+          text-align: center;
+        }
+      }
+    </style>
+  </head>
+  <body>
+    <header>
+      <nav class="navbar navbar-expand-lg navbar-custom">
+        <a class="navbar-brand" href="{% url 'home' %}">
+          Nova Collection
+          <span class="brand-text d-block"> The Wise Choice </span>
+        </a>
+
+        <button
+          class="navbar-toggler"
+          type="button"
+          data-toggle="collapse"
+          data-target="#navbarNav"
+        >
+          <span class="navbar-toggler-icon">
+            <i class="fas fa-bars"></i>
+          </span>
+        </button>
+
+        <div class="collapse navbar-collapse" id="navbarNav">
+          <ul class="navbar-nav ml-auto align-items-center">
+            <li class="nav-item">
+              <a class="nav-link" href="{% url 'home' %}">Home</a>
+            </li>
+            <li class="nav-item">
+              <a class="nav-link" href="{% url 'glass' %}">Glass</a>
+            </li>
+            <li class="nav-item">
+              <a class="nav-link" href="{% url 'electronics' %}">Electronics</a>
+            </li>
+            <li class="nav-item">
+              <a class="nav-link" href="{% url 'cosmetics' %}">Cosmetics</a>
+            </li>
+            <li class="nav-item">
+              <a class="nav-link" href="{% url 'household' %}">Household</a>
+            </li>
+            <li class="nav-item">
+              <a class="nav-link" href="{% url 'sports' %}">Sports</a>
+            </li>
+            <li class="nav-item">
+              <a class="nav-link" href="{% url 'signup' %}">Sign Up</a>
+            </li>
+
+            <li class="nav-item">
+              <form
+                method="post"
+                action="{% url 'logout' %}"
+                style="display: inline"
+              >
+                {% csrf_token %}
+                <button
+                  type="submit"
+                  class="nav-link"
+                  style="border: none; background: transparent"
+                >
+                  Logout
+                </button>
+              </form>
+            </li>
+
+            <li class="nav-item ml-3">
+              <a class="nav-link btn-cart" href="{% url 'cart' %}">
+                <i class="fas fa-shopping-cart"></i> Cart
+              </a>
+            </li>
+          </ul>
+        </div>
+      </nav>
+    </header>
+
+    <!-- Bootstrap JS and dependencies -->
+    <script src="https://code.jquery.com/jquery-3.5.1.slim.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.9.2/dist/umd/popper.min.js"></script>
+    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
+
+    <script>
+      const navbar = document.querySelector(".navbar-custom");
+
+      window.addEventListener("scroll", function () {
+        if (window.scrollY > 60) {
+          navbar.classList.add("navbar-scrolled");
+        } else {
+          navbar.classList.remove("navbar-scrolled");
+        }
+      });
+    </script>
+  </body>
+</html>

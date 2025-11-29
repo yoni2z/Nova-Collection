@@ -1,0 +1,221 @@
+{% extends 'base.html' %} {% block content %}
+
+<style>
+  :root {
+      --primary: #f4af2f;
+      --primary-dark: #e89c1d;
+      --text: #2d2d2d;
+      --shadow: 0 10px 30px rgba(0, 0, 0, 0.08);
+      --shadow-hover: 0 20px 40px rgba(244, 175, 47, 0.25);
+  }
+
+  .category-title {
+      font-weight: 800;
+      font-size: 2.8rem;
+      background: linear-gradient(90deg, var(--primary), #ffb84d);
+      -webkit-background-clip: text;
+      -webkit-text-fill-color: transparent;
+      background-clip: text;
+      position: relative;
+      display: inline-block;
+      left: 50%;
+      transform: translateX(-50%);
+      margin: 3rem 0 4rem;
+  }
+
+  .category-title::after {
+      content: '';
+      position: absolute;
+      width: 80px;
+      height: 5px;
+      background: var(--primary);
+      bottom: -15px;
+      left: 50%;
+      transform: translateX(-50%);
+      border-radius: 3px;
+  }
+
+  .product-card {
+      background: white;
+      border-radius: 20px;
+      overflow: hidden;
+      box-shadow: var(--shadow);
+      transition: all 0.4s ease;
+      height: 100%;
+      display: flex;
+      flex-direction: column;
+      opacity: 0;
+      transform: translateY(40px);
+      animation: fadeInUp 0.8s forwards;
+  }
+
+  .product-card:hover {
+      transform: translateY(-12px);
+      box-shadow: var(--shadow-hover);
+  }
+
+  @keyframes fadeInUp {
+      to { opacity: 1; transform: translateY(0); }
+  }
+
+  /* Stagger animation */
+  {% for product in products %}
+      .product-card:nth-child({{ forloop.counter }}) {
+          animation-delay: {{ forloop.counter0|add:"0.1"|floatformat:1 }}s;
+      }
+  {% endfor %}
+
+  .img-wrapper {
+      position: relative;
+      overflow: hidden;
+      height: 250px;
+  }
+
+  .card-img-top {
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+      transition: transform 0.7s ease;
+  }
+
+  .product-card:hover .card-img-top {
+      transform: scale(1.15);
+  }
+
+  .img-badge {
+      position: absolute;
+      top: 12px;
+      right: 12px;
+      background: rgba(244, 175, 47, 0.95);
+      color: white;
+      font-size: 0.8rem;
+      font-weight: 700;
+      padding: 6px 12px;
+      border-radius: 50px;
+      backdrop-filter: blur(10px);
+      box-shadow: 0 4px 12px rgba(0,0,0,0.2);
+  }
+
+  .card-body {
+      padding: 1.8rem 1.5rem;
+      text-align: center;
+      flex-grow: 1;
+      display: flex;
+      flex-direction: column;
+      justify-content: space-between;
+  }
+
+  .card-title {
+      font-size: 1.5rem;
+      font-weight: 700;
+      color: var(--text);
+      margin-bottom: 0.5rem;
+  }
+
+  .price {
+      font-size: 1.6rem;
+      font-weight: 900;
+      color: var(--primary);
+      margin: 0.8rem 0;
+  }
+
+  .extra-info {
+      color: #777;
+      font-size: 0.95rem;
+      margin: 0.5rem 0;
+  }
+
+  .btn-primary {
+      background: var(--primary);
+      color: white;
+      border: none;
+      padding: 0.75rem 2rem;
+      border-radius: 50px;
+      font-weight: 600;
+      text-transform: uppercase;
+      letter-spacing: 0.8px;
+      font-size: 0.95rem;
+      transition: all 0.4s ease;
+      box-shadow: 0 6px 15px rgba(244, 175, 47, 0.3);
+      align-self: center;
+      min-width: 180px;
+  }
+
+  .btn-primary:hover {
+      background: var(--primary-dark);
+      transform: translateY(-4px);
+      box-shadow: 0 12px 25px rgba(244, 175, 47, 0.4);
+  }
+
+  /* Responsive */
+  @media (max-width: 768px) {
+      .img-wrapper { height: 200px; }
+      .category-title { font-size: 2.3rem; }
+  }
+
+  @media (max-width: 576px) {
+      .img-wrapper { height: 150px; }
+      .card-title { font-size: 1.35rem; }
+      .price { font-size: 1.4rem; }
+  }
+</style>
+
+<div class="container py-5">
+  <h1 class="category-title text-center">{{ category.name }} Products</h1>
+
+  <div class="row g-4">
+    {% for product in products %}
+    <div class="col-lg-4 col-md-6">
+      <div class="product-card">
+        <div class="img-wrapper">
+          <img
+            src="{{ product.images.first.image.url }}"
+            class="card-img-top"
+            alt="{{ product.name }}"
+            loading="lazy"
+          />
+          {% if product.images.count > 1 %}
+          <span class="img-badge"
+            >+{{ product.images.count|add:"-1" }} photos</span
+          >
+          {% endif %}
+        </div>
+
+        <div class="card-body">
+          <div>
+            <h2 class="card-title">{{ product.name }}</h2>
+            <p class="price">{{ product.price }} ETB</p>
+            {% if product.images.count > 1 %}
+            <p class="extra-info">
+              {{ product.images.count }} images available
+            </p>
+            {% endif %}
+          </div>
+
+          <a
+            href="{% url 'product_detail' product.id %}"
+            class="btn-primary mt-4"
+          >
+            View Details
+          </a>
+        </div>
+      </div>
+    </div>
+    {% empty %}
+    <div class="col-12 text-center py-5">
+      <div
+        style="
+          padding: 4rem;
+          background: #f9f9f9;
+          border-radius: 20px;
+          border: 2px dashed #ddd;
+        "
+      >
+        <h4 class="text-muted">No products available in this category yet.</h4>
+      </div>
+    </div>
+    {% endfor %}
+  </div>
+</div>
+
+{% endblock %}

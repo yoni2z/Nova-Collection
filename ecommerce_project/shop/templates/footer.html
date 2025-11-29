@@ -1,0 +1,324 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Perfect Footer Example</title>
+    <link
+      href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css"
+      rel="stylesheet"
+    />
+    <link
+      rel="stylesheet"
+      href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.3/css/all.min.css"
+    />
+    <style>
+      /* --- GLOBAL LAYOUT --- */
+      html,
+      body {
+        height: 100%;
+        margin: 0;
+      }
+
+      body {
+        display: flex;
+        flex-direction: column;
+        min-height: 100vh;
+      }
+
+      footer {
+        margin-top: auto;
+      }
+
+      /* --- FOOTER CUSTOM STYLES --- */
+      .footer-custom {
+        background-color: #24303b; /* Primary Dark Background */
+        color: #e0e0e0; /* Light Gray Text */
+        padding: 60px 0 20px;
+        /* Initial state for fade-in animation */
+        opacity: 0;
+        transform: translateY(10px);
+        animation: footerFadeIn 1s ease-out forwards;
+        animation-delay: 0.5s;
+      }
+
+      /* Animation Keyframes */
+      @keyframes footerFadeIn {
+        to {
+          opacity: 1;
+          transform: translateY(0);
+        }
+      }
+
+      .footer-custom h2 {
+        color: #ffffff;
+        font-size: 3rem; /* Extra large font for main title */
+        font-weight: 800; /* Extra bold */
+        position: relative;
+        margin-bottom: 25px !important;
+      }
+
+      .footer-custom h4 {
+        color: #f4af2f; /* Highlight color for section titles */
+        font-weight: 700;
+        margin-bottom: 15px;
+        border-bottom: 2px solid rgba(244, 175, 47, 0.3); /* Subtle underline */
+        padding-bottom: 5px;
+      }
+
+      .footer-custom a {
+        color: #e0e0e0;
+        text-decoration: none;
+        transition: color 0.3s, transform 0.3s;
+      }
+
+      .footer-custom a:hover {
+        color: #f4af2f; /* Highlight on hover */
+        text-decoration: none; /* Keep underline off until link styles below */
+      }
+
+      /* Social Links Styling */
+      .social-link {
+        display: flex;
+        align-items: center;
+        color: #e0e0e0;
+        margin-bottom: 12px;
+        text-decoration: none;
+        transition: all 0.3s ease;
+      }
+
+      .social-link i {
+        margin-right: 15px;
+        font-size: 1.25rem;
+        width: 25px; /* Fixed width for alignment */
+        transition: color 0.3s, transform 0.3s;
+      }
+
+      .social-link:hover {
+        color: #f4af2f; /* Link text color change on hover */
+        transform: translateX(5px); /* Subtle slide effect */
+      }
+
+      .social-link:hover i {
+        color: #f4af2f; /* Icon color change on hover */
+        transform: scale(1.1); /* Icon size increase on hover */
+      }
+
+      /* Contact/Info Links */
+      .info-link {
+        color: #e0e0e0;
+        transition: color 0.3s;
+      }
+
+      .info-link:hover {
+        color: #f4af2f;
+        text-decoration: underline;
+      }
+
+      /* Logo Bottom Strip */
+      .logo-bottom {
+        background-color: #1a232b; /* Slightly darker strip */
+        padding: 15px 0;
+        border-top: 1px solid rgba(255, 255, 255, 0.1);
+      }
+
+      .designed-by-text {
+        display: flex;
+        flex-direction: column;
+        align-items: flex-start;
+        margin-left: 15px;
+      }
+
+      .designed-by-name {
+        color: #f4af2f; /* Highlight theme color */
+        font-weight: 600;
+        margin-bottom: 0;
+      }
+
+      .designed-by-phone {
+        color: #f4af2f;
+        font-weight: bold;
+        text-decoration: none;
+        transition: color 0.3s, text-decoration 0.3s;
+      }
+
+      .designed-by-phone:hover {
+        color: #ffe6ac; /* Lighter shade on hover */
+        text-decoration: underline;
+      }
+
+      .footer-logo {
+        max-width: 100px;
+        height: auto;
+        margin-right: 15px;
+        transition: transform 0.5s;
+      }
+
+      .footer-logo:hover {
+        transform: rotate(5deg) scale(1.05); /* Slight playful effect on logo */
+      }
+
+      /* Copyright Text */
+      .copyright-text {
+        color: #777777;
+        margin-top: 30px;
+        margin-bottom: 0 !important;
+      }
+
+      /* Responsive adjustments */
+      @media (max-width: 991px) {
+        .footer-custom h2 {
+          font-size: 2.5rem;
+        }
+        .designed-by-text {
+          align-items: center;
+          margin-top: 10px;
+          margin-left: 0;
+        }
+        .logo-bottom .d-flex.justify-content-start {
+          justify-content: center !important;
+        }
+      }
+    </style>
+  </head>
+  <body>
+    
+
+    <footer class="footer-custom">
+      <section class="container">
+        <h2 id="contacts" class="text-center">Connect With Us</h2>
+        <hr
+          style="
+            background-color: #f4af2f;
+            height: 3px;
+            width: 100px;
+            margin: 0 auto 50px auto;
+            border: none;
+          "
+        />
+
+        <div class="row">
+          <div class="col-lg-4 col-md-6 mb-4">
+            <div class="d-flex flex-column">
+              <h4>Customer Support</h4>
+              <p>
+                <strong><i class="fas fa-envelope fa-fw"></i> Email:</strong>
+                <a href="mailto:support@novamarket.com" class="info-link"
+                  >support@novamarket.com</a
+                >
+              </p>
+              <p>
+                <strong><i class="fas fa-phone fa-fw"></i> Phone:</strong> +251
+                931-56-3278
+              </p>
+              <p>
+                <strong><i class="fas fa-clock fa-fw"></i> Hours:</strong> Mon -
+                Fri, 9 AM - 6 PM (GMT)
+              </p>
+            </div>
+          </div>
+
+          <div class="col-lg-4 col-md-6 mb-4">
+            <div class="d-flex flex-column">
+              <h4>Store Location</h4>
+              <p class="mb-2">
+                <i class="fas fa-map-marker-alt fa-fw"></i> Nova Market Store,
+                Megenaya, Infront of Yeka Subcity, Nucleus Building 2nd Floor
+                No.F1-15, Addis Ababa, Ethiopia
+              </p>
+              <p>
+                <i class="fas fa-calendar-alt fa-fw"></i> Store Hours: Mon -
+                Sat, 10 AM - 8 PM (GMT)
+              </p>
+            </div>
+          </div>
+
+          <div class="col-lg-4 col-md-12 mb-4">
+            <div class="d-flex flex-column">
+              <h4>Follow Us</h4>
+
+              <a
+                href="https://www.instagram.com/nova_collection_tp"
+                class="social-link"
+                target="_blank"
+                rel="noopener noreferrer"
+              >
+                <i class="fab fa-instagram"></i> Instagram
+              </a>
+
+              <a
+                href="https://www.tiktok.com/@novacollection7?is_from_webapp=1&sender_device=pc"
+                class="social-link"
+                target="_blank"
+                rel="noopener noreferrer"
+              >
+                <i class="fab fa-tiktok"></i> Tiktok
+              </a>
+
+              <a
+                href="https://t.me/novamarket7"
+                class="social-link"
+                target="_blank"
+                rel="noopener noreferrer"
+              >
+                <i class="fab fa-telegram-plane"></i> Telegram
+              </a>
+
+              <a
+                href="https://www.facebook.com/profile.php?id=61556524997553&mibextid=LQQJ4d"
+                class="social-link"
+                target="_blank"
+                rel="noopener noreferrer"
+              >
+                <i class="fab fa-facebook-f"></i> Facebook
+              </a>
+            </div>
+          </div>
+        </div>
+
+        <p class="text-center copyright-text">
+          &copy; {% now "Y" %} Nova Gebeya, All Rights Reserved
+        </p>
+      </section>
+    </footer>
+
+    <div class="logo-bottom">
+      <div class="container">
+        <div class="row">
+          <div
+            class="col-12 d-flex align-items-center justify-content-start justify-content-lg-start"
+          >
+            <div>
+              <img
+                src="../static/images/byteleap.png"
+                alt="ByteLeap Logo"
+                class="footer-logo"
+              />
+            </div>
+
+            <div class="designed-by-text">
+              <p class="designed-by-name">
+                <i class="fas fa-code"></i> Designed and Developed by:
+                <strong>ByteLeap Solutions</strong>
+              </p>
+              <p class="designed-by-name">
+                <i class="fas fa-mobile-alt"></i> Contact:
+                <a class="designed-by-phone" href="tel:+251932070575"
+                  >+251932070575</a
+                >
+                /
+                <a class="designed-by-phone" href="tel:+251951051322"
+                  >+251951051322</a
+                >
+              </p>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <script src="https://code.jquery.com/jquery-3.5.1.slim.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.9.2/dist/umd/popper.min.js"></script>
+    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
+  </body>
+</html>

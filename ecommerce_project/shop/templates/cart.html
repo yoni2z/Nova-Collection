@@ -1,0 +1,268 @@
+{% extends "base.html" %} {% block content %}
+
+<!-- ========= PAGE-SPECIFIC STYLES ONLY ========= -->
+<style>
+  /* PAGE WRAPPER (SCOPES ALL STYLES SAFELY) */
+  .cart-page {
+    margin-top: 40px;
+    margin-bottom: 60px;
+    animation: cartFadeUp 0.8s ease;
+  }
+
+  /* ========= ANIMATIONS ========= */
+  @keyframes cartFadeUp {
+    from {
+      opacity: 0;
+      transform: translateY(30px);
+    }
+    to {
+      opacity: 1;
+      transform: translateY(0);
+    }
+  }
+
+  @keyframes cartGlow {
+    from {
+      box-shadow: 0 0 10px rgba(76, 175, 80, 0.3);
+    }
+    to {
+      box-shadow: 0 0 25px rgba(51, 114, 231, 0.7);
+    }
+  }
+
+  /* ========= TITLE ========= */
+  .cart-page h1 {
+    font-weight: 700;
+    text-align: center;
+    margin-bottom: 30px;
+    background: linear-gradient(to right, #222, #0365ceff);
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+  }
+
+  /* ========= TABLE WRAPPER ========= */
+  .cart-page .table-responsive {
+    background: rgba(255, 255, 255, 0.95);
+    border-radius: 20px;
+    padding: 20px;
+    box-shadow: 0 15px 40px rgba(0, 0, 0, 0.15);
+  }
+
+  /* ========= TABLE ========= */
+  .cart-page .table {
+    border-radius: 15px;
+    overflow: hidden;
+  }
+
+  .cart-page thead {
+    background: linear-gradient(135deg, #0365ceff, #0056b3);
+    color: white;
+  }
+
+  .cart-page th,
+  .cart-page td {
+    vertical-align: middle !important;
+    text-align: center;
+    padding: 14px;
+  }
+
+  /* Row Hover Effect */
+  .cart-page tbody tr {
+    transition: all 0.3s ease;
+  }
+
+  .cart-page tbody tr:hover {
+    background: rgba(76, 175, 80, 0.06);
+    transform: scale(1.01);
+    box-shadow: 0 5px 15px rgba(0, 0, 0, 0.15);
+  }
+
+  /* ========= INPUT ========= */
+  .cart-page input[type="number"] {
+    width: 80px;
+    border-radius: 50px;
+    padding: 6px 12px;
+    text-align: center;
+    font-weight: 600;
+    border: 2px solid #0365ceff;
+    transition: 0.3s ease;
+  }
+
+  .cart-page input[type="number"]:focus {
+    outline: none;
+    transform: scale(1.05);
+    box-shadow: 0 0 10px rgba(76, 175, 80, 0.5);
+  }
+
+  /* ========= BUTTONS ========= */
+  .cart-page .btn {
+    border-radius: 50px;
+    font-weight: 600;
+    padding: 6px 16px;
+    transition: all 0.3s ease;
+    position: relative;
+    overflow: hidden;
+  }
+
+  .cart-page .btn-primary {
+    background: linear-gradient(135deg, #0365ceff, #0056b3);
+    border: none;
+  }
+
+  .cart-page .btn-primary:hover {
+    transform: translateY(-3px) scale(1.05);
+    box-shadow: 0 10px 25px rgba(76, 175, 80, 0.5);
+  }
+
+  .cart-page .btn-danger {
+    background: linear-gradient(135deg, #ff5c5c, #c0392b);
+    border: none;
+  }
+
+  .cart-page .btn-danger:hover {
+    transform: translateY(-3px) scale(1.05);
+    box-shadow: 0 10px 25px rgba(192, 57, 43, 0.5);
+  }
+
+  /* ========= CART SUMMARY ========= */
+  .cart-page .cart-summary {
+    margin-top: 35px;
+    background: rgba(255, 255, 255, 0.95);
+    border-radius: 22px;
+    padding: 22px 28px;
+    box-shadow: 0 15px 40px rgba(0, 0, 0, 0.15);
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: space-between;
+    align-items: center;
+    gap: 15px;
+    animation: cartFadeUp 1s ease;
+  }
+
+  .cart-page .cart-summary p {
+    margin: 0;
+    font-size: 1.1rem;
+    font-weight: 600;
+    color: #444;
+  }
+
+  /* ========= TOTAL PRICE BADGE ========= */
+  .cart-page .cart-total {
+    background: linear-gradient(135deg, #0365ceff, #0056b3);
+    color: white;
+    padding: 10px 26px;
+    border-radius: 50px;
+    font-weight: 700;
+    animation: cartGlow 1.5s infinite alternate;
+  }
+
+  /* ========= DEBUG BOX ========= */
+  .cart-page .alert-info {
+    border-radius: 15px;
+    border: none;
+    font-weight: 600;
+    background: rgba(79, 195, 247, 0.15);
+  }
+
+  /* ========= EMPTY CART ========= */
+  .cart-page .empty-cart {
+    text-align: center;
+    font-size: 1.2rem;
+    font-weight: 500;
+    color: #666;
+    animation: cartFadeUp 0.8s ease;
+  }
+
+  /* ========= MOBILE ========= */
+  @media (max-width: 768px) {
+    .cart-page h1 {
+      font-size: 1.8rem;
+    }
+
+    .cart-page .cart-summary {
+      flex-direction: column;
+      text-align: center;
+    }
+  }
+</style>
+
+<!-- ========= CART PAGE CONTENT ========= -->
+<div class="container cart-page">
+  <h1>Your Cart</h1>
+
+  {% if cart_items %}
+
+  <div class="table-responsive">
+    <table class="table table-bordered">
+      <thead>
+        <tr>
+          <th>Product</th>
+          <th>Quantity</th>
+          <th>Price</th>
+          <th>Total</th>
+          <th>Actions</th>
+        </tr>
+      </thead>
+
+      <tbody>
+        {% for item in cart_items %}
+        <tr>
+          <td>{{ item.product.name }}</td>
+
+          <td>
+            <form
+              method="post"
+              action="{% url 'update_cart' item.id %}"
+              class="d-inline"
+            >
+              {% csrf_token %}
+              <input
+                type="number"
+                name="quantity"
+                value="{{ item.quantity }}"
+                min="1"
+              />
+              <button type="submit" class="btn btn-primary btn-sm">
+                Update
+              </button>
+            </form>
+          </td>
+
+          <td>{{ item.product.price|floatformat:2 }}</td>
+          <td>{{ item.total_price|floatformat:2 }}</td>
+
+          <td>
+            <form
+              method="post"
+              action="{% url 'remove_from_cart' item.id %}"
+              class="d-inline"
+            >
+              {% csrf_token %}
+              <button type="submit" class="btn btn-danger btn-sm">
+                Remove
+              </button>
+            </form>
+          </td>
+        </tr>
+        {% endfor %}
+      </tbody>
+    </table>
+  </div>
+
+  <!-- ========= SUMMARY ========= -->
+  <div class="cart-summary">
+    <p>Total Items: {{ cart_items|length }}</p>
+
+    <div class="alert alert-info mb-0">
+      Total Price Calculated: {{ cart_items_total }}
+    </div>
+
+    <div class="cart-total">Total: {{ cart_items_total|floatformat:2 }}</div>
+  </div>
+
+  {% else %}
+  <p class="empty-cart">Your cart is empty.</p>
+  {% endif %}
+</div>
+
+{% endblock %}

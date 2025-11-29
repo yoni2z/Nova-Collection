@@ -1,0 +1,235 @@
+{% extends 'base.html' %} {% block content %}
+<style>
+  /* 🎨 Custom Styles and Animations */
+
+  /* Animation Keyframes for smooth entrance */
+  @keyframes slideInUp {
+    from {
+      opacity: 0;
+      transform: translateY(20px);
+    }
+    to {
+      opacity: 1;
+      transform: translateY(0);
+    }
+  }
+
+  .animated-card {
+    opacity: 0;
+    animation: slideInUp 0.8s ease-out forwards;
+    box-shadow: 0 15px 40px rgba(0, 0, 0, 0.1); /* Deeper shadow */
+    border: none !important;
+  }
+
+  /* List Item Styling */
+  .list-group-item {
+    border-left: 5px solid transparent;
+    transition: all 0.3s ease;
+    padding: 20px 25px;
+    margin-bottom: 8px;
+    border-radius: 8px;
+    background-color: #fcfcfc;
+    border-color: #e0e0e0;
+  }
+
+  /* Highlight on hover */
+  .list-group-item:hover {
+    background-color: #fff9e6; /* Light theme background */
+    border-left-color: #f4af2f; /* Highlight border color */
+    transform: translateY(-2px); /* Subtle lift */
+  }
+
+  /* Icon Container - Use theme color */
+  .icon-container {
+    width: 55px !important;
+    height: 55px !important;
+    background-color: #f4af2f !important; /* Theme color */
+    color: #070707 !important;
+    font-weight: bold;
+    font-size: 1.5rem;
+    transition: transform 0.3s;
+    flex-shrink: 0; /* Prevents shrinking on smaller screens */
+    box-shadow: 0 4px 10px rgba(244, 175, 47, 0.4);
+  }
+
+  .list-group-item:hover .icon-container {
+    transform: rotate(5deg) scale(1.05); /* Spin/pop effect on hover */
+  }
+
+  /* Text Styling */
+  h1 {
+    font-weight: 700;
+    color: #212529;
+    margin-bottom: 30px !important;
+    animation: slideInUp 0.6s ease-out forwards;
+  }
+
+  h5.mb-1 {
+    color: #24303b;
+    font-weight: 600;
+    font-size: 1.25rem;
+  }
+
+  p.mb-0 {
+    color: #6c757d;
+    line-height: 1.6;
+  }
+
+  /* Link Styling - Use theme color */
+  .text-primary,
+  a.text-primary {
+    color: #f4af2f !important;
+    font-weight: bold;
+    transition: color 0.3s, text-decoration 0.3s;
+  }
+
+  .text-primary:hover,
+  a.text-primary:hover {
+    color: #dc9614 !important;
+    text-decoration: underline;
+  }
+
+  /* Optional: Separator Line */
+  .list-group-flush .list-group-item:last-child {
+    border-bottom: none;
+  }
+</style>
+
+<div class="container py-5 my-5">
+  <h1 class="text-center mb-5">✨ How to Place an Order</h1>
+
+  <div class="row justify-content-center">
+    <div class="col-md-10 col-lg-8">
+      <div class="card animated-card rounded-lg">
+        <div class="card-body p-4 p-md-5">
+          <ol class="list-group list-group-flush">
+            <li
+              class="list-group-item d-flex align-items-start"
+              style="animation-delay: 0.1s"
+            >
+              <div
+                class="icon-container rounded-circle d-flex align-items-center justify-content-center mr-4"
+              >
+                1
+              </div>
+              <div>
+                <h5 class="mb-1">Browse Products</h5>
+                <p class="mb-0">ለመግዛት የሚፈልጉትን ምርት ይምረጡ።</p>
+              </div>
+            </li>
+
+            <li
+              class="list-group-item d-flex align-items-start"
+              style="animation-delay: 0.2s"
+            >
+              <div
+                class="icon-container rounded-circle d-flex align-items-center justify-content-center mr-4"
+              >
+                2
+              </div>
+              <div>
+                <h5 class="mb-1">Send Product Details (Screenshot/Name)</h5>
+                <p class="mb-0">
+                  መርጠው screenshot በ
+                  <a
+                    href="https://t.me/yoseph3278"
+                    class="text-primary"
+                    target="_blank"
+                    rel="noopener noreferrer"
+                  >
+                    @yoseph3278
+                  </a>
+                  የቴሌግራም ገጽ ላኩልን ወይም በስልክ ቁጥራችን
+                  <a href="tel:+251931563278" class="text-primary"
+                    >0931563278</a
+                  >
+                  /
+                  <a href="tel:+251951940845" class="text-primary"
+                    >0951940845</a
+                  >
+                  ይደውሉልን።
+                </p>
+              </div>
+            </li>
+
+            <li
+              class="list-group-item d-flex align-items-start"
+              style="animation-delay: 0.3s"
+            >
+              <div
+                class="icon-container rounded-circle d-flex align-items-center justify-content-center mr-4"
+              >
+                3
+              </div>
+              <div>
+                <h5 class="mb-1">Provide Personal & Delivery Details</h5>
+                <p class="mb-0">
+                  የእርስዎን ሙሉ ስም፣ አድራሻ፣ ስልክ ቁጥር እና የክፍያ ምርጫ ይላኩ። ለበለጠ መረጃ፡
+                  <a
+                    href="https://t.me/yoseph3278"
+                    class="text-primary"
+                    target="_blank"
+                    rel="noopener noreferrer"
+                    >@yoseph3278</a
+                  >.
+                </p>
+              </div>
+            </li>
+
+            <li
+              class="list-group-item d-flex align-items-start"
+              style="animation-delay: 0.4s"
+            >
+              <div
+                class="icon-container rounded-circle d-flex align-items-center justify-content-center mr-4"
+              >
+                4
+              </div>
+              <div>
+                <h5 class="mb-1">Confirmation Call</h5>
+                <p class="mb-0">ከቢሮአችን ትዕዛዝዎን ለማረጋገጥ የስልክ ጥሪ ይደርስዎታል።</p>
+              </div>
+            </li>
+
+            <li
+              class="list-group-item d-flex align-items-start"
+              style="animation-delay: 0.5s"
+            >
+              <div
+                class="icon-container rounded-circle d-flex align-items-center justify-content-center mr-4"
+              >
+                5
+              </div>
+              <div>
+                <h5 class="mb-1">Fast Delivery to Your Door</h5>
+                <p class="mb-0">
+                  አዲስ አበባ ውስጥ ከሆኑ በፈጣን መልዕክተኛ ወይም ከአዲስ አበባ ውጭ ካሉ በማንኛውም የፖስታ ቤት
+                  አገልግሎት ምርጫዎን እንልክልዎታለን።
+                </p>
+              </div>
+            </li>
+          </ol>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <div class="text-center mt-5 p-3 animated-card" style="animation-delay: 0.7s">
+    <p class="lead text-muted">Ready to place your order?</p>
+    <a
+      href="{% url 'home' %}"
+      class="btn btn-lg btn-warning"
+      style="
+        background-color: #f4af2f;
+        color: #070707;
+        font-weight: bold;
+        border-radius: 50px;
+        padding: 12px 30px;
+        transition: transform 0.3s;
+      "
+    >
+      Browse Products Now →
+    </a>
+  </div>
+</div>
+{% endblock %}

@@ -1,0 +1,141 @@
+{% extends 'base.html' %} {% block content %}
+<style>
+  /* Custom CSS for enhanced aesthetics */
+  .attractive-card {
+    /* Initial state for fade-in animation */
+    opacity: 0;
+    transform: translateY(20px);
+    /* Smooth transition for both animation and hover effects */
+    transition: all 0.5s ease-out;
+    /* Custom box shadow for a more premium look */
+    box-shadow: 0 10px 25px rgba(0, 0, 0, 0.15);
+    border: none !important; /* Remove light border for cleaner look */
+  }
+
+  /* Animation keyframes for fade-in effect */
+  @keyframes fadeInSlideUp {
+    from {
+      opacity: 0;
+      transform: translateY(20px);
+    }
+    to {
+      opacity: 1;
+      transform: translateY(0);
+    }
+  }
+
+  /* Applying the animation to the card */
+  .animate-in {
+    animation: fadeInSlideUp 0.8s ease-out forwards;
+  }
+
+  /* Hover effect for the card (subtle lift) */
+  .attractive-card:hover {
+    transform: translateY(-2px);
+    box-shadow: 0 15px 35px rgba(0, 0, 0, 0.2);
+  }
+
+  /* Custom button styling and hover effect */
+  .attractive-btn {
+    background-color: rgb(244, 175, 47) !important;
+    color: #070707 !important;
+    border: none !important;
+    font-weight: bold;
+    transition: all 0.3s ease;
+    padding: 10px 20px;
+    border-radius: 5px;
+  }
+
+  .attractive-btn:hover {
+    background-color: rgb(
+      210,
+      150,
+      40
+    ) !important; /* Slightly darker on hover */
+    transform: scale(1.05); /* Subtle press effect */
+    box-shadow: 0 5px 15px rgba(0, 0, 0, 0.1);
+  }
+
+  /* Styling for the card header */
+  .attractive-header {
+    background-color: rgb(244, 175, 47) !important;
+    color: #070707 !important;
+    border-bottom: none;
+  }
+
+  /* Styling for the 'Sign up here' link */
+  .attractive-link {
+    font-weight: bold;
+    color: #1a73e8; /* A common, friendly link color */
+    transition: color 0.3s ease;
+  }
+
+  .attractive-link:hover {
+    color: #0b499b; /* Darker on hover */
+    text-decoration: underline;
+  }
+</style>
+
+<div class="container mt-5 mb-5">
+  <div
+    class="row justify-content-center align-items-center"
+    style="min-height: 80vh"
+  >
+    <div class="col-lg-6 col-md-8">
+      <div class="card attractive-card animate-in">
+        <div class="card-header text-center attractive-header">
+          <h3 class="font-weight-bold mb-0">🔑 User Login</h3>
+        </div>
+        <div class="card-body">
+          {% if form.errors %}
+          <div class="alert alert-danger" role="alert">
+            <h4 class="alert-heading">Login Error:</h4>
+            <ul>
+              {% for field in form %} {% for error in field.errors %}
+              <li>{{ error }}</li>
+              {% endfor %} {% endfor %} {% for error in form.non_field_errors %}
+              <li>{{ error }}</li>
+              {% endfor %}
+            </ul>
+          </div>
+          {% endif %}
+          <form method="post">
+            {% csrf_token %}
+            <div class="form-group">
+              <label for="{{ form.username.id_for_label }}">Username</label>
+              <input
+                type="text"
+                name="username"
+                id="{{ form.username.id_for_label }}"
+                class="form-control"
+                value="{{ form.username.value|default:'' }}"
+                required
+              />
+            </div>
+            <div class="form-group">
+              <label for="{{ form.password.id_for_label }}">Password</label>
+              <input
+                type="password"
+                name="password"
+                id="{{ form.password.id_for_label }}"
+                class="form-control"
+                value=""
+              />
+            </div>
+            <div class="text-center mt-4">
+              <button type="submit" class="btn attractive-btn">Login</button>
+            </div>
+          </form>
+        </div>
+        <div class="card-footer text-center bg-light">
+          <p class="mb-0">
+            Don't have an account?
+            <a href="{% url 'signup' %}" class="attractive-link">Sign up here</a
+            >.
+          </p>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+{% endblock %}

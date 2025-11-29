@@ -1,0 +1,941 @@
+{% extends 'base.html' %} {% load static %} {% block content %}
+<style>
+                      /* 🌟 Hero Section Enhanced Styles & Animations 🌟 */
+
+                      ..hero-nova {
+                        position: relative;
+                        background: linear-gradient(120deg, #f4af2f, #ffce5c, #f39c12);
+                        background-size: 300% 300%;
+                        animation: gradientShift 12s ease infinite;
+                        overflow: hidden;
+                      }
+
+                      /* Animated Background Gradient */
+                      @keyframes gradientShift {
+                        0% {
+                          background-position: 0% 50%;
+                        }
+                        50% {
+                          background-position: 100% 50%;
+                        }
+                        100% {
+                          background-position: 0% 50%;
+                        }
+                      }
+
+                      /* Glow Overlay */
+                      .hero-nova::before {
+                        content: "";
+                        position: absolute;
+                        inset: 0;
+                        background: radial-gradient(
+                          circle at top right,
+                          rgba(255, 255, 255, 0.35),
+                          transparent 60%
+                        );
+                        pointer-events: none;
+                      }
+
+                      /* Floating Logo Animation */
+                      .hero-nova img {
+                        animation: floatLogo 4s ease-in-out infinite;
+                      }
+
+                      @keyframes floatLogo {
+                        0% {
+                          transform: translateY(0);
+                        }
+                        50% {
+                          transform: translateY(-12px);
+                        }
+                        100% {
+                          transform: translateY(0);
+                        }
+                      }
+
+                      /* Text Reveal Animations */
+                      .hero-title {
+                        font-weight: 900;
+                        font-size: 3.8rem;
+                        letter-spacing: 1px;
+                        animation: slideFade 1s ease forwards;
+                      }
+
+                      /* Glowing animated typing word */
+                      .glow-word {
+                        color: #ffffff;
+                        text-shadow: 0 0 5px #fff, 0 0 10px #f4af2f, 0 0 20px #f4af2f,
+                          0 0 40px #ff9900;
+                        animation: glowPulse 2s infinite alternate;
+                      }
+
+                      .hero-desc {
+                        font-size: 2.6rem;
+                        font-weight: 800;
+                        line-height: 1.4;
+                        color: #1b1b1b;
+                        position: relative;
+                        animation: textFloat 4s ease-in-out infinite;
+                      }
+
+                      /* Floating Breathing Motion */
+                      @keyframes textFloat {
+                        0% {
+                          transform: translateY(0);
+                        }
+                        50% {
+                          transform: translateY(-6px);
+                        }
+                        100% {
+                          transform: translateY(0);
+                        }
+                      }
+
+                      /* Static text styling */
+                      .static-text {
+                        color: #1b1b1b;
+                        font-weight: 800;
+                      }
+
+                      /* Glow Pulse Animation */
+                      @keyframes glowPulse {
+                        from {
+                          text-shadow: 0 0 5px #fff, 0 0 10px #f4af2f, 0 0 20px #f4af2f;
+                        }
+                        to {
+                          text-shadow: 0 0 10px #fff, 0 0 20px #ffcc00, 0 0 40px #ff9900;
+                        }
+                      }
+
+                      /* Mobile scaling */
+                      @media (max-width: 767.98px) {
+                        .hero-title {
+                          font-size: 2.4rem;
+                        }
+                      }
+
+                      @keyframes slideFade {
+                        from {
+                          opacity: 0;
+                          transform: translateY(25px);
+                        }
+                        to {
+                          opacity: 1;
+                          transform: translateY(0);
+                        }
+                      }
+
+                      @keyframes blink {
+                        0% {
+                          opacity: 1;
+                        }
+                        50% {
+                          opacity: 0;
+                        }
+                        100% {
+                          opacity: 1;
+                        }
+                      }
+
+                      /* CTA Button Effects */
+                      .hero-btn {
+                        position: relative;
+                        border-radius: 60px;
+                        padding: 16px 46px;
+                        font-weight: 900;
+                        letter-spacing: 1px;
+                        font-size: 1.2rem;
+                        overflow: hidden;
+                        {% comment %} background: linear-gradient(120deg, #111, #000); {% endcomment %}
+                        color: #fff;
+                        border: 2px solid #000;
+                        transition: all 0.3s ease;
+                        animation: buttonBreath 2.5s ease-in-out infinite;
+                      }
+
+                      /* Soft breathing glow */
+                      @keyframes buttonBreath {
+                        0% {
+                          box-shadow: 0 0 0 rgba(0, 0, 0, 0.3);
+                        }
+                        50% {
+                          box-shadow: 0 0 25px rgba(0, 0, 0, 0.7);
+                        }
+                        100% {
+                          box-shadow: 0 0 0 rgba(0, 0, 0, 0.3);
+                        }
+                      }
+
+                      /* Magnetic Hover */
+                      .hero-btn:hover {
+                        transform: translateY(-6px) scale(1.08);
+                        box-shadow: 0 20px 50px rgba(0, 0, 0, 0.35);
+                      }
+
+                      /* Energy wave */
+                      .hero-btn::before {
+                        content: "";
+                        position: absolute;
+                        inset: 0;
+                        background: radial-gradient(
+                          circle at center,
+                          rgba(255, 255, 255, 0.35),
+                          transparent 65%
+                        );
+                        opacity: 0;
+                        transition: 0.3s;
+                      }
+
+                      .hero-btn:hover::before {
+                        opacity: 1;
+                      }
+
+                      /* Shine Sweep */
+                      .hero-btn::after {
+                        content: "";
+                        position: absolute;
+                        top: -50%;
+                        left: -120%;
+                        width: 240%;
+                        height: 240%;
+                        background: linear-gradient(
+                          120deg,
+                          transparent,
+                          rgba(255, 255, 255, 0.6),
+                          transparent
+                        );
+                        transform: rotate(25deg);
+                      }
+
+                      .hero-btn:hover::after {
+                        animation: shine 1s ease;
+                      }
+
+                      /* Responsive Adjustments */
+                      @media (max-width: 767.98px) {
+                        .hero-title {
+                          font-size: 2rem;
+                        }
+
+                        .hero-nova .btn {
+                          width: 100%;
+                        }
+                      }
+
+                      .hero-icon {
+                        margin-right: 12px;
+                        color: #ff9800;
+                        animation: iconPulse 1.6s infinite alternate;
+                      }
+
+                      @keyframes iconPulse {
+                        from {
+                          transform: scale(1);
+                          text-shadow: 0 0 5px #ffcc00;
+                        }
+                        to {
+                          transform: scale(1.25);
+                          text-shadow: 0 0 20px #ff9900;
+                        }
+                      }
+
+                 /* ============================================================= */
+        /* ✅ PRODUCTS SECTION
+        /* ============================================================= */
+
+        /* ===================== */
+        /* ✅ GRID & LAYOUT */
+        /* ===================== */
+
+      /* Products Section Title Animation */
+      h2#products {
+        font-size: 3rem;
+        font-weight: 900;
+        text-transform: uppercase;
+        background: linear-gradient(90deg, #f4af2f, #ffce5c, #f39c12);
+        -webkit-background-clip: text;
+        -webkit-text-fill-color: transparent;
+        animation: gradientText 3s ease infinite, floatTitle 3s ease-in-out infinite;
+        text-align: center;
+        margin-bottom: 3rem;
+      }
+
+      @keyframes gradientText {
+        0% { background-position: 0% 50%; }
+        50% { background-position: 100% 50%; }
+        100% { background-position: 0% 50%; }
+      }
+
+      @keyframes floatTitle {
+        0%, 100% { transform: translateY(0); }
+        50% { transform: translateY(-8px); }
+      }
+
+
+        .row.g-5 {
+          display: flex;
+          flex-wrap: wrap;
+          justify-content: center;
+        }
+
+        /* Wrapper for each product */
+        .product-card {
+          width: 100%;
+          height: 100%;
+          display: flex;
+          flex-direction: column;
+          position: relative;
+          border-radius: 20px;
+          overflow: visible; /* ✅ Prevent button clipping */
+          transition: transform 0.5s ease, box-shadow 0.5s ease;
+          opacity: 0;
+          transform: translateY(30px);
+          animation: cardFadeUp 0.8s forwards;
+          z-index: 1;
+        }
+
+        /* ✅ Stagger animation */
+        .product-card:nth-child(1) { animation-delay: 0.1s; }
+        .product-card:nth-child(2) { animation-delay: 0.3s; }
+        .product-card:nth-child(3) { animation-delay: 0.5s; }
+        .product-card:nth-child(4) { animation-delay: 0.7s; }
+        .product-card:nth-child(5) { animation-delay: 0.9s; }
+
+        @keyframes cardFadeUp {
+          to {
+            opacity: 1;
+            transform: translateY(0);
+          }
+        }
+
+        /* ✅ Hover Lift */
+        .product-card:hover {
+          transform: translateY(-12px) scale(1.03);
+          box-shadow: 0 20px 40px rgba(0, 0, 0, 0.35);
+          z-index: 10;
+        }
+
+        /* ===================== */
+        /* ✅ IMAGE STYLING */
+        /* ===================== */
+
+        .card-img-wrapper {
+          position: relative;
+          overflow: hidden;
+        }
+
+        .product-card img.card-img-top {
+          width: 100%;
+          height: 250px;
+          object-fit: cover; /* ✅ Equal image size */
+          display: block;
+          transition: transform 0.6s ease, filter 0.6s ease;
+        }
+
+        /* ✅ Zoom + Glow on hover */
+        .product-card:hover img.card-img-top {
+          transform: scale(1.15) rotate(1deg);
+          filter: brightness(1.15);
+        }
+
+        /* ===================== */
+        /* ✅ ICON OVERLAY */
+        /* ===================== */
+
+        .card-icon {
+          position: absolute;
+          top: 12px;
+          right: 12px;
+          font-size: 2.5rem;
+          color: #f4af2f;
+          opacity: 0.85;
+          transform: translateY(-20px);
+          transition: transform 0.5s ease, color 0.5s ease;
+          z-index: 5;
+        }
+
+        .product-card:hover .card-icon {
+          transform: translateY(0) rotate(15deg);
+          color: #ffce5c;
+          text-shadow:
+            0 0 10px #ffcc00,
+            0 0 20px #f39c12;
+        }
+
+        /* ===================== */
+        /* ✅ CARD BODY (EQUAL HEIGHT FIXED) */
+        /* ===================== */
+
+        .product-card .card {
+          height: 100%;
+          display: flex;
+          flex-direction: column;
+          overflow: visible; /* ✅ Prevents button cut */
+        }
+
+        .product-card .card-body {
+          display: flex;
+          flex-direction: column;
+          justify-content: space-between;
+          flex-grow: 1;
+          padding: 1.5rem;
+          overflow: visible;
+        }
+
+        /* ===================== */
+        /* ✅ PRODUCT TITLE */
+        /* ===================== */
+
+        .product-title {
+          font-size: 1.8rem;
+          font-weight: 900;
+          animation: titleFloat 4s ease-in-out infinite;
+        }
+
+        @keyframes titleFloat {
+          0% { transform: translateY(0); }
+          50% { transform: translateY(-6px); }
+          100% { transform: translateY(0); }
+        }
+
+        /* ===================== */
+        /* ✅ PRODUCT DESCRIPTION */
+        /* ===================== */
+
+        .product-desc {
+          font-size: 1rem;
+          line-height: 1.6;
+          color: #1b1b1b;
+          animation: descFade 1.5s ease forwards;
+        }
+
+        @keyframes descFade {
+          from { opacity: 0; transform: translateY(20px); }
+          to { opacity: 1; transform: translateY(0); }
+        }
+
+        /* ===================== */
+        /* ✅ BUTTON SHINE (FULLY FIXED) */
+        /* ===================== */
+
+        .product-btn {
+          position: relative;
+          overflow: hidden;
+          border-radius: 50px;
+          font-weight: 700;
+          transition: all 0.3s ease;
+          z-index: 5; /* ✅ Always visible */
+        }
+
+        .product-btn:hover {
+          transform: translateY(-3px) scale(1.05);
+          box-shadow: 0 8px 25px rgba(0,0,0,0.25);
+          background-color: rgb(244, 175, 47);
+          border-color: rgb(244, 175, 47);
+          color: #fff;
+        }
+
+        /* ✅ Shine Swipe */
+        .product-btn::after {
+          content: "";
+          position: absolute;
+          top: -50%;
+          left: -100%;
+          width: 200%;
+          height: 200%;
+          background: linear-gradient(
+            120deg,
+            transparent,
+            rgba(255,255,255,0.6),
+            transparent
+          );
+          transform: rotate(25deg);
+        }
+
+        .product-btn:hover::after {
+          animation: shine 1s ease;
+        }
+
+        @keyframes shine {
+          to { left: 100%; }
+        }
+
+        /* ===================== */
+        /* ✅ RESPONSIVE */
+        /* ===================== */
+
+        @media (max-width: 991px) {
+          .product-title { font-size: 1.5rem; }
+          .card-icon { font-size: 2rem; }
+          .product-desc { font-size: 0.95rem; }
+          .product-card img.card-img-top { height: 220px; }
+        }
+
+        @media (max-width: 576px) {
+          .product-title { font-size: 1.3rem; }
+          .product-desc { font-size: 0.9rem; }
+          .product-card img.card-img-top { height: 200px; }
+        }
+
+    /* ============================================================= */
+  /* HOW IT WORKS — NUMBERED PREMIUM ANIMATED SECTION */
+  /* ============================================================= */
+
+  #how-it-works {
+    padding: 5rem 0;
+    position: relative;
+  }
+
+  /* ---------- Animated Title ---------- */
+  #how-it-works #how {
+    font-size: 3rem;
+    font-weight: 900;
+    text-align: center;
+    margin-bottom: 4rem;
+    background: linear-gradient(90deg, #f4af2f, #ffe6a6, #f39c12);
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    animation: howGlow 3s ease-in-out infinite;
+  }
+
+  @keyframes howGlow {
+    0% { text-shadow: 0 0 0 transparent; }
+    50% { text-shadow: 0 0 25px #f4af2f; }
+    100% { text-shadow: 0 0 0 transparent; }
+  }
+
+  /* ---------- Card Wrapper ---------- */
+  .how-card {
+    position: relative;
+    border-radius: 24px;
+    padding: 3.5rem 2.5rem 2.5rem;
+    background: linear-gradient(
+      135deg,
+      rgba(255, 255, 255, 0.2),
+      rgba(244, 175, 47, 0.95)
+    );
+    backdrop-filter: blur(12px);
+    box-shadow: 0 15px 40px rgba(0, 0, 0, 0.18);
+    overflow: hidden;
+    transition: all 0.5s ease;
+    min-height: 260px;
+    opacity: 0;
+    transform: translateY(40px);
+    animation: howFadeUp 0.9s forwards;
+  }
+
+  /* Stagger entrance */
+  .how-card:nth-child(1) { animation-delay: 0.2s; }
+  .how-card:nth-child(2) { animation-delay: 0.4s; }
+  .how-card:nth-child(3) { animation-delay: 0.6s; }
+  .how-card:nth-child(4) { animation-delay: 0.8s; }
+
+  @keyframes howFadeUp {
+    to {
+      opacity: 1;
+      transform: translateY(0);
+    }
+  }
+
+  /* Hover Motion */
+  .how-card:hover {
+    transform: translateY(-12px) scale(1.03);
+    box-shadow: 0 25px 60px rgba(0, 0, 0, 0.3);
+  }
+
+  /* ---------- Big Step Number ---------- */
+  .step-number {
+    position: absolute;
+    top: 15px;
+    right: 20px;
+    font-size: 4.5rem;
+    font-weight: 900;
+    color: rgba(255, 255, 255, 0.45);
+    pointer-events: none;
+    transition: all 0.5s ease;
+  }
+
+  .how-card:hover .step-number {
+    transform: scale(1.2) rotate(5deg);
+    color: rgba(255, 255, 255, 0.85);
+  }
+
+  /* ---------- Floating Icon ---------- */
+  .how-icon {
+    width: 4rem;
+    height: 4rem;
+    background: radial-gradient(circle, #fff, #f4af2f);
+    border-radius: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    box-shadow: 0 0 25px rgba(244, 175, 47, 0.8);
+    margin-bottom: 1.5rem;
+    animation: floatIcon 3.2s ease-in-out infinite;
+    transition: transform 0.4s ease;
+  }
+
+  .how-icon ion-icon {
+    font-size: 1.7rem;
+    color: #1b1b1b;
+  }
+
+  .how-card:hover .how-icon {
+    transform: scale(1.25) rotate(10deg);
+  }
+
+  @keyframes floatIcon {
+    0% { transform: translateY(0); }
+    50% { transform: translateY(-10px); }
+    100% { transform: translateY(0); }
+  }
+
+  /* ---------- Card Title ---------- */
+  .how-card h3 {
+    font-size: 1.6rem;
+    font-weight: 800;
+    color: #1b1b1b;
+    margin-bottom: 0.75rem;
+  }
+
+  /* ---------- Card Description ---------- */
+  .how-text {
+    font-size: 1.05rem;
+    color: #1b1b1b;
+    opacity: 0;
+    transform: translateY(15px);
+    transition: all 0.45s ease;
+  }
+
+  .how-card:hover .how-text {
+    opacity: 1;
+    transform: translateY(0);
+  }
+
+  /* ---------- Shine Sweep Effect ---------- */
+  .how-card::after {
+    content: "";
+    position: absolute;
+    top: -50%;
+    left: -100%;
+    width: 200%;
+    height: 200%;
+
+  }
+
+  .how-card:hover::after {
+    animation: sweep 1.2s ease;
+  }
+
+  @keyframes sweep {
+    to { left: 100%; }
+  }
+
+  /* ---------- Mobile Optimization ---------- */
+  @media (max-width: 768px) {
+    #how-it-works #how {
+      font-size: 2.2rem;
+    }
+
+    .how-card {
+      min-height: auto;
+    }
+
+    .how-text {
+      opacity: 1;
+      transform: none;
+    }
+
+    .step-number {
+      font-size: 3.5rem;
+    }
+  }
+</style>
+
+<header>
+  <section class="heading-section my-5 py-5 hero-nova">
+    <div class="container text-black py-5">
+      <div class="row align-items-center">
+        <!-- ✅ LOGO SIDE -->
+        <div class="col-lg-6 text-center text-lg-start mb-4 mb-lg-0">
+          <img
+            src="{% static 'images/novaaa.png' %}"
+            class="img-fluid rounded w-100 px-3"
+            alt="company logo"
+          />
+        </div>
+
+        <!-- ✅ TEXT SIDE -->
+        <div class="col-lg-6">
+          <!-- ✅ TYPING TITLE -->
+          <h1 class="hero-title py-3 text-center text-lg-start">
+            <span id="typing-word" class="glow-word"></span>
+            <span class="static-text"> the Best at Nova Collection</span>
+          </h1>
+
+          <p class="hero-desc py-3 text-center text-lg-start">
+            Your One-Stop Shop for Quality and Variety.
+          </p>
+
+          <div class="text-center text-lg-start">
+            <a
+              href="{% url 'order_now' %}"
+              class="btn btn-outline-dark hero-btn w-50 w-sm-75"
+            >
+              Order Now
+            </a>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+</header>
+
+<section>
+  <div class="container py-5">
+    <h2 id="products" class="text-dark fw-bold text-center fs-1">Products</h2>
+    <div class="container my-5">
+      <div class="row g-5">
+        <div class="col-lg-4 col-md-4 col-sm-6 mt-4">
+          <div class="product-card">
+            <div class="card shadow-lg d-flex flex-column product-card">
+              <div class="card-img-wrapper position-relative">
+                <img
+                  src="{% static 'images/babiglass.jpg' %}"
+                  class="card-img-top"
+                  alt="picture of eyeglass"
+                />
+                <i class="fas fa-glasses card-icon"></i>
+              </div>
+              <div class="card-body flex-grow-1">
+                <h2 class="product-title">Glass</h2>
+                <p class="product-desc">
+                  Explore our photochromic and anti-blue light eyeglasses at
+                  Nova Market.
+                </p>
+                <a href="glass" class="btn btn-outline-warning product-btn"
+                  >More</a
+                >
+              </div>
+            </div>
+          </div>
+        </div>
+        <div class="col-lg-4 col-md-4 col-sm-6 mt-4">
+          <div class="product-card">
+            <div class="card shadow-lg d-flex flex-column product-card">
+              <div class="card-img-wrapper position-relative">
+                <img
+                  src="{% static 'images/babielectronics.jpg' %}"
+                  class="card-img-top"
+                  alt="picture of eyeglass"
+                />
+                <i class="fas fa-tv card-icon"></i>
+              </div>
+              <div class="card-body flex-grow-1">
+                <h2 class="product-title">Electronics</h2>
+                <p class="product-desc">
+                  Explore our photochromic and anti-blue light eyeglasses at
+                  Nova Market.
+                </p>
+                <a href="glass" class="btn btn-outline-warning product-btn"
+                  >More</a
+                >
+              </div>
+            </div>
+          </div>
+        </div>
+        <div class="col-lg-4 col-md-4 col-sm-6 mt-4">
+          <div class="product-card">
+            <div class="card shadow-lg d-flex flex-column product-card">
+              <div class="card-img-wrapper position-relative">
+                <img
+                  src="{% static 'images/cosmotics.jpg' %}"
+                  class="card-img-top"
+                  alt="picture of eyeglass"
+                />
+                <i class="fas fa-capsules card-icon"></i>
+              </div>
+              <div class="card-body flex-grow-1">
+                <h2 class="product-title">Cosmetics</h2>
+                <p class="product-desc">
+                  Explore our photochromic and anti-blue light eyeglasses at
+                  Nova Market.
+                </p>
+                <a href="glass" class="btn btn-outline-warning product-btn"
+                  >More</a
+                >
+              </div>
+            </div>
+          </div>
+        </div>
+        <div class="col-lg-4 col-md-4 col-sm-6 mt-4">
+          <div class="product-card">
+            <div class="card shadow-lg d-flex flex-column product-card">
+              <div class="card-img-wrapper position-relative">
+                <img
+                  src="{% static 'images/babihouse.jpg' %}"
+                  class="card-img-top"
+                  alt="picture of eyeglass"
+                />
+                <i class="fas fa-home card-icon"></i>
+              </div>
+              <div class="card-body flex-grow-1">
+                <h2 class="product-title">Household</h2>
+                <p class="product-desc">
+                  Explore our photochromic and anti-blue light eyeglasses at
+                  Nova Market.
+                </p>
+                <a href="glass" class="btn btn-outline-warning product-btn"
+                  >More</a
+                >
+              </div>
+            </div>
+          </div>
+        </div>
+        <div class="col-lg-4 col-md-4 col-sm-6 mt-4">
+          <div class="product-card">
+            <div class="card shadow-lg d-flex flex-column product-card">
+              <div class="card-img-wrapper position-relative">
+                <img
+                  src="{% static 'images/babispo.jpg' %}"
+                  class="card-img-top"
+                  alt="picture of eyeglass"
+                />
+                <i class="fas fa-basketball-ball card-icon"></i>
+              </div>
+              <div class="card-body flex-grow-1">
+                <h2 class="product-title">Sports</h2>
+                <p class="product-desc">
+                  Explore our photochromic and anti-blue light eyeglasses at
+                  Nova Market.
+                </p>
+                <a href="glass" class="btn btn-outline-warning product-btn"
+                  >More</a
+                >
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section id="how-it-works">
+  <div class="container">
+    <h2 id="how">How it Works</h2>
+
+    <div class="row g-5">
+      <!-- STEP 1 -->
+      <div class="col-lg-6 col-md-6 col-sm-12 mt-4">
+        <div class="how-card">
+          <div class="step-number">01</div>
+
+          <span class="how-icon">
+            <ion-icon name="search"></ion-icon>
+          </span>
+
+          <h3>Browse Our Collection</h3>
+          <p class="how-text">
+            Discover a wide range of products across various categories tailored
+            to your needs.
+          </p>
+        </div>
+      </div>
+
+      <!-- STEP 2 -->
+      <div class="col-lg-6 col-md-6 col-sm-12 mt-4">
+        <div class="how-card">
+          <div class="step-number">02</div>
+
+          <span class="how-icon">
+            <ion-icon name="pricetags"></ion-icon>
+          </span>
+
+          <h3>Select Your Items</h3>
+          <p class="how-text">
+            Choose from our curated selection and add your favorite items to the
+            cart.
+          </p>
+        </div>
+      </div>
+
+      <!-- STEP 3 -->
+      <div class="col-lg-6 col-md-6 col-sm-12 mt-4">
+        <div class="how-card">
+          <div class="step-number">03</div>
+
+          <span class="how-icon">
+            <ion-icon name="call"></ion-icon>
+          </span>
+
+          <h3>Place Your Order</h3>
+          <p class="how-text">
+            Proceed to checkout with our secure and straightforward ordering
+            process.
+          </p>
+        </div>
+      </div>
+
+      <!-- STEP 4 -->
+      <div class="col-lg-6 col-md-6 col-sm-12 mt-4">
+        <div class="how-card">
+          <div class="step-number">04</div>
+
+          <span class="how-icon">
+            <ion-icon name="airplane"></ion-icon>
+          </span>
+
+          <h3>Fast & Secure Delivery</h3>
+          <p class="how-text">
+            Enjoy quick delivery to your doorstep with our reliable shipping
+            partners.
+          </p>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<script>
+  /* ============================================================= */
+  /* ✅ SINGLE-WORD TYPING EFFECT (ROTATING WORDS) */
+  /* ============================================================= */
+
+  const words = ["Experience", "Find", "Discover"];
+  let wordIndex = 0;
+  let charIndex = 0;
+  let isDeleting = false;
+  const typingSpeed = 100;
+  const deletingSpeed = 80;
+  const delayBetweenWords = 1200;
+
+  const typingElement = document.getElementById("typing-word");
+
+  function typeWord() {
+    const currentWord = words[wordIndex];
+
+    if (!isDeleting) {
+      typingElement.textContent = currentWord.substring(0, charIndex + 1);
+      charIndex++;
+
+      if (charIndex === currentWord.length) {
+        setTimeout(() => (isDeleting = true), delayBetweenWords);
+      }
+    } else {
+      typingElement.textContent = currentWord.substring(0, charIndex - 1);
+      charIndex--;
+
+      if (charIndex === 0) {
+        isDeleting = false;
+        wordIndex = (wordIndex + 1) % words.length;
+      }
+    }
+
+    setTimeout(typeWord, isDeleting ? deletingSpeed : typingSpeed);
+  }
+
+  document.addEventListener("DOMContentLoaded", typeWord);
+</script>
+
+{% endblock %}
